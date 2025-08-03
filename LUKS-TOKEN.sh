@@ -242,8 +242,8 @@ display_file_menu() {
                 local file_name="Notes.txt"
                 ;;
             2)
-                local file_path="$MOUNT_POINT/GitHub Token"
-                local file_name="GitHub Token"
+                local file_path="$MOUNT_POINT/GITHUB-TOKEN"
+                local file_name="GITHUB-TOKEN"
                 ;;
             *)
                 print_error "Invalid choice. Please enter 1 or 2."
