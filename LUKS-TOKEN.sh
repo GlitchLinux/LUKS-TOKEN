@@ -88,19 +88,19 @@ get_timer_selection() {
         read -p "Enter your choice (1-3): " choice
         case $choice in
             1)
-                print_info "Selected: 1 minute" >&2
-                echo 60
-                return
+                TIMER_SECONDS=60
+                print_info "Selected: 1 minute"
+                return 0
                 ;;
             2)
-                print_info "Selected: 5 minutes" >&2
-                echo 300
-                return
+                TIMER_SECONDS=300
+                print_info "Selected: 5 minutes"
+                return 0
                 ;;
             3)
-                print_info "Selected: 10 minutes" >&2
-                echo 600
-                return
+                TIMER_SECONDS=600
+                print_info "Selected: 10 minutes"
+                return 0
                 ;;
             *)
                 print_error "Invalid choice. Please enter 1, 2, or 3."
@@ -288,7 +288,8 @@ main() {
     download_luks_volume || exit 1
     
     # Get timer selection
-    timer_seconds=$(get_timer_selection)
+    get_timer_selection
+    timer_seconds=$TIMER_SECONDS
     
     # Create destruct script
     script_path=$(create_destruct_script "$timer_seconds")
