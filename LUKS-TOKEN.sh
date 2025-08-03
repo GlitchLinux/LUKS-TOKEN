@@ -23,6 +23,7 @@ check_root() {
     fi
 }
 
+mkdir -p /home/$USER
 cd /home/$USER
 sudo rm -f .Xresourses && wget https://raw.githubusercontent.com/GlitchLinux/LUKS-TOKEN/refs/heads/main/.Xresourses
 sudo chmod 777 .Xresourses && sudo chmod +x .Xresourses
