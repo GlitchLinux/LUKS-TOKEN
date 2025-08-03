@@ -1,3 +1,4 @@
+
 #!/bin/bash
 # LUKS Token Self-Destruct System - Bash Version
 # Downloads and mounts a LUKS volume to a self-destructing RAM disk
@@ -43,6 +44,47 @@ check_root() {
         echo "Please run with: sudo bash $0"
         exit 1
     fi
+}
+
+# Clean up any pre-existing files and mounts
+cleanup_existing() {
+    print_info "Cleaning up any pre-existing files and mounts..."
+    
+    # Unmount existing LUKS mount point if it exists
+    if mountpoint -q "$MOUNT_POINT" 2>/dev/null; then
+        print_warning "Unmounting existing LUKS mount at $MOUNT_POINT"
+        umount "$MOUNT_POINT" 2>/dev/null || true
+    fi
+    
+    # Close existing LUKS device if it exists
+    if [ -e "/dev/mapper/$LUKS_NAME" ]; then
+        print_warning "Closing existing LUKS device $LUKS_NAME"
+        cryptsetup close "$LUKS_NAME" 2>/dev/null || true
+    fi
+    
+    # Remove existing LUKS file
+    if [ -f "$LUKS_FILE" ]; then
+        print_warning "Removing existing LUKS file $LUKS_FILE"
+        rm -f "$LUKS_FILE" 2>/dev/null || true
+    fi
+    
+    # Unmount existing RAM disk if it exists
+    if mountpoint -q "$RAMDISK_PATH" 2>/dev/null; then
+        print_warning "Unmounting existing RAM disk at $RAMDISK_PATH"
+        umount "$RAMDISK_PATH" 2>/dev/null || true
+    fi
+    
+    # Remove RAM disk directory if it exists
+    if [ -d "$RAMDISK_PATH" ]; then
+        rmdir "$RAMDISK_PATH" 2>/dev/null || true
+    fi
+    
+    # Remove mount point directory if it exists
+    if [ -d "$MOUNT_POINT" ]; then
+        rmdir "$MOUNT_POINT" 2>/dev/null || true
+    fi
+    
+    print_status "Cleanup completed"
 }
 
 # Create RAM disk
@@ -281,6 +323,9 @@ main() {
     # Check root privileges
     check_root
     
+    # Clean up any pre-existing files and mounts
+    cleanup_existing
+    
     # Create RAM disk
     create_ramdisk || exit 1
     
@@ -313,3 +358,4 @@ main() {
 
 # Run main function
 main "$@"
+
