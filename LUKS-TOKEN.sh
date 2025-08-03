@@ -207,7 +207,7 @@ EOF
     if command -v gnome-terminal >/dev/null; then
         gnome-terminal -- bash -c "$RAMDISK_PATH/destruct.sh $timer_seconds; read -p 'Press Enter to close...'"
     elif command -v xterm >/dev/null; then
-        xterm -geometry 50x3 -e "bash -c '$RAMDISK_PATH/destruct.sh $timer_seconds; read -p \"Press Enter to close...\"'" &
+        xterm -geometry 30x2 -e "bash -c '$RAMDISK_PATH/destruct.sh $timer_seconds; read -p \"Press Enter to close...\"'" &
     else
         # Fallback: background process
         nohup bash "$RAMDISK_PATH/destruct.sh" "$timer_seconds" >/dev/null 2>&1 &
