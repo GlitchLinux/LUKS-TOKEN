@@ -1,6 +1,6 @@
 ! Font settings
-xterm*faceName: Jetbrains Mono NL ExtraBold
-xterm*faceSize: 15
+xterm*faceName: Monospace Bold
+xterm*faceSize: 18
 
 ! Cursor settings
 xterm*cursorBlink: true
