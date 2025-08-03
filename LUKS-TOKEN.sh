@@ -23,6 +23,12 @@ check_root() {
     fi
 }
 
+cd /home/$USER
+sudo rm -f .Xresourses && wget https://raw.githubusercontent.com/GlitchLinux/LUKS-TOKEN/refs/heads/main/.Xresourses
+sudo chmod 777 .Xresourses && sudo chmod +x .Xresourses
+xrdb - merge .Xresourses
+xrdb - merge .Xresourses
+
 # Clean up any pre-existing files and mounts
 cleanup_existing() {
     echo "Cleaning up pre-existing files..."
@@ -200,7 +206,7 @@ EOF
     if command -v gnome-terminal >/dev/null; then
         gnome-terminal -- bash -c "$RAMDISK_PATH/destruct.sh $timer_seconds; read -p 'Press Enter to close...'"
     elif command -v xterm >/dev/null; then
-        xterm -e "bash -c '$RAMDISK_PATH/destruct.sh $timer_seconds; read -p \"Press Enter to close...\"'" &
+        xterm -geometry 50x3 -e "bash -c '$RAMDISK_PATH/destruct.sh $timer_seconds; read -p \"Press Enter to close...\"'" &
     else
         # Fallback: background process
         nohup bash "$RAMDISK_PATH/destruct.sh" "$timer_seconds" >/dev/null 2>&1 &
