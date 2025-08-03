@@ -88,18 +88,18 @@ get_timer_selection() {
         read -p "Enter your choice (1-3): " choice
         case $choice in
             1)
+                print_info "Selected: 1 minute" >&2
                 echo 60
-                print_info "Selected: 1 minute"
                 return
                 ;;
             2)
+                print_info "Selected: 5 minutes" >&2
                 echo 300
-                print_info "Selected: 5 minutes"
                 return
                 ;;
             3)
+                print_info "Selected: 10 minutes" >&2
                 echo 600
-                print_info "Selected: 10 minutes"
                 return
                 ;;
             *)
