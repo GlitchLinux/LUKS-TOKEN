@@ -1,0 +1,54 @@
+! Font settings
+xterm*faceName: Jetbrains Mono NL ExtraBold
+xterm*faceSize: 15
+
+! Cursor settings
+xterm*cursorBlink: true
+xterm*cursorUnderLine: true
+xterm*cursorColor: #00FF2D
+xterm*pointerColor: #FFFFFF
+xterm*cursorColorForeground: #00FF2D
+
+! Geometry
+xterm*geometry: 50x15
+
+! Disable audible bell
+xterm*bellIsUrgent: false
+xterm*visualBell: true
+xterm*bellSuppressTime: 0
+
+! Scrollbar
+xterm*scrollBar: false
+
+! Selection colors
+xterm*highlightSelection: true
+xterm*selectToClipboard: true
+xterm*highlightColor: #ec0900ffff
+xterm*foreground: #dededddddada
+xterm*background: #000000
+
+! Copy/Paste with Ctrl+Shift+C/V
+xterm*VT100.translations: #override \
+  Ctrl Shift <Key>C: copy-selection(CLIPBOARD) \n\
+  Ctrl Shift <Key>V: insert-selection(CLIPBOARD) \n\
+  Ctrl <Key>plus: larger-vt-font() \n\
+  Ctrl <Key>minus: smaller-vt-font() \n\
+  Ctrl <Key>equal: set-vt-font(d)
+
+! Color palette
+xterm*color0:  #000000
+xterm*color1:  #aa0000
+xterm*color2:  #00ff2d
+xterm*color3:  #00ff2d
+xterm*color4:  #0000aa
+xterm*color5:  #aa00aa
+xterm*color6:  #00aaaa
+xterm*color7:  #aaaaaa
+xterm*color8:  #555555
+xterm*color9:  #ff5555
+xterm*color10: #55ff55
+xterm*color11: #ffff55
+xterm*color12: #5555ff
+xterm*color13: #ff55ff
+xterm*color14: #55ffff
+xterm*color15: #ffffff
