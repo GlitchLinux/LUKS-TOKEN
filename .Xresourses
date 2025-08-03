@@ -1,6 +1,6 @@
 ! Font settings
 xterm*faceName: Monospace Bold
-xterm*faceSize: 18
+xterm*faceSize: 22
 
 ! Cursor settings
 xterm*cursorBlink: true
